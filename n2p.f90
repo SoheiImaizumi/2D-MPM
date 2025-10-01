@@ -5,16 +5,16 @@ module n2p_extrapolation_module ! using MUSL ! every single particle
 
 Contains
   subroutine n2p_extrapolation(nI, dt, xp, mI, vp_new, NIp, pp, &
-                               pp_new, vp, xp_new, pI_new, np, fI)
+                               pp_new, vp, xp_new, pI_new, np, npm, fI)
 
     integer :: l, i, j
-    integer, intent(in) :: nI, np
+    integer, intent(in) :: nI, np, npm
     real(dp8), intent(in) :: dt, mI(nI), xp(2, np), NIp(2, nI, np), &
                             pI_new(2, nI), fI(2, nI), pp(2, np), vp(2, np)
     real(dp8), intent(out) :: vp_new(2, np), xp_new(2, np), pp_new(2, np)
     real(dp8) :: pinc(2, nI), vinc(2, nI), xinc(2, nI)
 
-    do i = 1, np
+    do i = 1, npm
       pinc = 0.0d0
       vinc = 0.0d0
       xinc = 0.0d0
@@ -42,6 +42,14 @@ Contains
         vp_new(j, i) = vp(j, i) + dt * sum(vinc(j, :))
       end do
       
+    end do
+
+    do i = npm +1, np
+      do j = 1, 2
+        xp_new(j, i) = xp(j, i)
+        pp_new(j, i) = 0.0d0
+        vp_new(j, i) = 0.0d0
+      end do  
     end do
 
   end subroutine n2p_extrapolation

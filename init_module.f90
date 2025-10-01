@@ -8,29 +8,29 @@ Contains
 
     integer :: np, nI_horiz, nI_vert, step
     real(dp1) :: M0, h, dt, vol, g, E, nu
-    real(dp1) :: CFL, c 
+    !real(dp1) :: CFL, c 
     real(dp1) :: v0(2)
 
-    np = 16
+    np = 32
     nI_horiz = 40
     nI_vert = 40
-    step = 3000
+    step = 5000
 
-    c = 3.4d2
-    CFL = 5.0e-1
+    !c = 3.4d2
+    !CFL = 5.0e-1
 
     M0 = 1.0e1
-    h = 5.0e-2
+    h = 5.0e-3
     vol = 1.0e-2
-    v0(1) = 1.0d-2
+    v0(1) = 0.0d0
     v0(2) = 0.0d0
 
-    g = 1.0d4
+    g = 1.0d3
 
     E = 1.0e3
     nu = 0.3
     
-    dt = CFL * h / c
+    dt = 0.005
 
   end subroutine init
 end module initial_module

@@ -18,7 +18,7 @@ program mpm2d_paraboric
   integer, parameter :: dp = selected_real_kind(15, 307)      
 
   integer :: t
-  integer :: step, np, nI, nI_horiz, nI_vert
+  integer :: step, np, npm, nI, nI_horiz, nI_vert
   real(dp) :: M0, h, dt, vol, g, E, nu
 
   real(dp), parameter :: eps = 1.0e-15_dp
@@ -51,7 +51,7 @@ program mpm2d_paraboric
   allocate(Fp(2, 2, np), Fp_new(2, 2, np))
   allocate(fIint(2, nI), fIext(2, nI))
 
-  call particle_distribution(M0, h, np, vol, v0, xp, pp, vp, mp, volp)
+  call particle_distribution(M0, h, np, npm, vol, v0, xp, pp, vp, mp, volp)
 
   do t = 1, step
     pI = 0.0d0
@@ -68,7 +68,7 @@ program mpm2d_paraboric
     call I_renew(nI, dt, pI, fI, pI_new)
     call bcondition(nI_horiz, fI, pI_new, nI)
     call n2p_extrapolation(nI, dt, xp, mI, vp_new, NIp, pp, &
-                           pp_new, vp, xp_new, pI_new, np, fI)
+                           pp_new, vp, xp_new, pI_new, np, npm, fI)
     call double_mapping(NIp, pp_new, mI, nI, np, vI_dm)
     call p_renew(nI, np, dt, E, nu, volp0, Fp, Fp_new, &
                  volp_new, grad_NIp, vI_dm, sigma, sigma_new)
