@@ -32,11 +32,7 @@ Contains
 
       fIext(1,l) = 0.0d0
       fIext(2,l) = - g * mI(l)
-
-      !if (fIext(2, l) /= 0.0d0) then
-      !  write(*,*) 'gai', fIext(:, l)
-      !end if
-
+    
       do j = 1,2
         if (pI(j,l) < cutoff) then
           pI(j,l) = 0.0d0

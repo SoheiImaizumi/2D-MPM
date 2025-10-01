@@ -14,6 +14,7 @@ SRC = init_module.f90 \
       double_map.f90 \
       p_renew.f90 \
       gnu_out.f90 \
+      history.f90\
       write_vtk.f90 \
       main.f90 
 

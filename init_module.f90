@@ -14,21 +14,21 @@ Contains
     np = 16
     nI_horiz = 40
     nI_vert = 40
-    step = 1000
+    step = 3000
 
     c = 3.4d2
     CFL = 5.0e-1
 
-    M0 = 2.0e-1
-    h = 2.0e-2
-    vol = 1.0e-4
-    v0(1) = 5.0d-1
+    M0 = 1.0e1
+    h = 5.0e-2
+    vol = 1.0e-2
+    v0(1) = 1.0d-2
     v0(2) = 0.0d0
 
-    g = 1.0d3
+    g = 1.0d4
 
-    E = 1.0e4
-    nu = 3.0e-2
+    E = 1.0e3
+    nu = 0.3
     
     dt = CFL * h / c
 

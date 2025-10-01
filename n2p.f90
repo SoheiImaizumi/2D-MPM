@@ -23,7 +23,7 @@ Contains
 
       do l = 1, nI
         do j = 1, 2
-          if (mI(l) >= 1.0d-2) then
+          if (mI(l) >= 1.0d-4) then
             vinc(j, l) = NIp(j, l, i) * fI(j, l) / (mI(l))
             xinc(j, l) = NIp(j, l, i) * pI_new(j, l) / (mI(l))
             pinc(j, l) = NIp(j, l, i) * pI_new(j, l)
@@ -39,12 +39,9 @@ Contains
       do j = 1, 2
         xp_new(j, i) = xp(j, i) + dt * sum(xinc(j, :))
         pp_new(j, i) = pp(j, i) + dt * sum(pinc(j, :))
-        vp_new(j, l) = vp(j, l) + dt * sum(vinc(j, :))
+        vp_new(j, i) = vp(j, i) + dt * sum(vinc(j, :))
       end do
-
-      !if (fI(2, l) /= 0.0d0) then
-      !  write(*,*) 'nodal force', fI(2, l)
-      !end if
+      
     end do
 
   end subroutine n2p_extrapolation

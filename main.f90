@@ -11,6 +11,7 @@ program mpm2d_paraboric
   use double_mapping_module
   use p_renew_module
   use gnuplot_write
+  use write_history_module
   use write_vtk_module
 
   implicit none
@@ -50,7 +51,7 @@ program mpm2d_paraboric
   allocate(Fp(2, 2, np), Fp_new(2, 2, np))
   allocate(fIint(2, nI), fIext(2, nI))
 
-  call particle_distribution(M0, np, vol, v0, xp, pp, vp, mp, volp)
+  call particle_distribution(M0, h, np, vol, v0, xp, pp, vp, mp, volp)
 
   do t = 1, step
     pI = 0.0d0
@@ -81,6 +82,7 @@ program mpm2d_paraboric
     Fp = Fp_new
     
     call vtk_write(t, np, xp, vp, sigma, volp)
+    call write_velocity_history(t, dt, np, vp, xp)
 
   end do
 
