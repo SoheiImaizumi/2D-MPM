@@ -45,8 +45,6 @@ Contains
   do p = 1, 2
     II(p, p) = 1.0d0
   end do
-
-  !write(*,*) II(:, :)
   
   Lp = 0.0d0
   symLp = 0.0d0

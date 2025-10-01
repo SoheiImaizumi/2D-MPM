@@ -23,7 +23,7 @@ Contains
 
       do l = 1, nI
         do j = 1, 2
-          if (mI(l) >= 1.0d-4) then
+          if (mI(l) >= 1.0d-12) then
             vinc(j, l) = NIp(j, l, i) * fI(j, l) / (mI(l))
             xinc(j, l) = NIp(j, l, i) * pI_new(j, l) / (mI(l))
             pinc(j, l) = NIp(j, l, i) * pI_new(j, l)
@@ -41,15 +41,35 @@ Contains
         pp_new(j, i) = pp(j, i) + dt * sum(pinc(j, :))
         vp_new(j, i) = vp(j, i) + dt * sum(vinc(j, :))
       end do
-      
     end do
 
     do i = npm +1, np
+      pinc = 0.0d0
+      vinc = 0.0d0
+      xinc = 0.0d0
+
+      pp_new(:, i) = 0.0d0
+
+      do l = 1, nI
+        do j = 1, 2
+          if (mI(l) >= 1.0d-12) then
+            vinc(j, l) = NIp(j, l, i) * fI(j, l) / (mI(l))
+            xinc(j, l) = NIp(j, l, i) * pI_new(j, l) / (mI(l))
+            pinc(j, l) = NIp(j, l, i) * pI_new(j, l)
+          else
+            vinc(j, l) = 0.0d0
+            xinc(j, l) = 0.0d0
+            pinc(j, l) = 0.0d0   
+          end if
+        end do
+
+      end do
+
       do j = 1, 2
         xp_new(j, i) = xp(j, i)
-        pp_new(j, i) = 0.0d0
-        vp_new(j, i) = 0.0d0
-      end do  
+        pp_new(j, i) = pp(j, i) + dt * sum(pinc(j, :))
+        vp_new(j, i) = vp(j, i) + dt * sum(vinc(j, :))
+      end do
     end do
 
   end subroutine n2p_extrapolation

@@ -11,7 +11,7 @@ Contains
     !real(dp1) :: CFL, c 
     real(dp1) :: v0(2)
 
-    np = 32
+    np = 16
     nI_horiz = 40
     nI_vert = 40
     step = 5000
@@ -19,18 +19,18 @@ Contains
     !c = 3.4d2
     !CFL = 5.0e-1
 
-    M0 = 1.0e1
-    h = 5.0e-3
+    M0 = 1.0e2
+    h = 5.0e-2
     vol = 1.0e-2
     v0(1) = 0.0d0
     v0(2) = 0.0d0
 
-    g = 1.0d3
+    g = 1.0d2
 
-    E = 1.0e3
+    E = 1.0d2
     nu = 0.3
     
-    dt = 0.005
+    dt = 0.0001
 
   end subroutine init
 end module initial_module

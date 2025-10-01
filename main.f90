@@ -59,7 +59,7 @@ program mpm2d_paraboric
     volI = 0.0d0
     mI = 0.0d0
 
-    write(*,*) 'momentum', pp(2, :)
+    !write(*,*) 'momentum', pp(2, :)
     write(*,*) 'height', xp(2, :)
     
     call shapefunc(xI, xp, NIp, grad_NIp, h, nI, np)
@@ -81,7 +81,7 @@ program mpm2d_paraboric
     volp = volp_new
     Fp = Fp_new
     
-    call vtk_write(t, np, xp, vp, sigma, volp)
+    !call vtk_write(t, np, xp, vp, sigma, volp)
     call write_velocity_history(t, dt, np, vp, xp)
 
   end do

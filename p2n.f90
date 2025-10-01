@@ -34,7 +34,7 @@ Contains
       fIext(2,l) = - g * mI(l)
     
       do j = 1,2
-        if (pI(j,l) < cutoff) then
+        if (mI(l) < cutoff) then
           pI(j,l) = 0.0d0
         end if
         
